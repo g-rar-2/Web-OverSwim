@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>OverSwim</title>
+  <!--
+    ✅ PERSONALIZA TUS IMÁGENES (SIN ROMPER NADA)
+    - Coloca tu logo en:  assets/logo.png
+    - Coloca la imagen principal en: assets/hero.jpg
+    - Cursos:   assets/cursos/bebes.jpg, ninos.jpg, adultos.jpg, grupal-adultos.jpg, grupal-ninos.jpg
+    - Testimonios: assets/testimonios/ana.jpg, carlos.jpg, laura.jpg
+    (Puedes cambiar rutas/archivos y listo.)
+  -->
+
+  <meta name="description" content="Aprende a nadar con OverSwim. Clases personalizadas para niños y adultos en Panamá. Reserva tu cupo y mejora tu técnica con instructores certificados.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.overswimpa.com" />
+  <meta name="google-site-verification" content="_aH0dIqYMBhEeQCW6E1bXlP9ARnr-3OZNsX6-Nc2rlY" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="OverSwim">
+  <meta property="og:description" content="Aprende a nadar con OverSwim. Clases personalizadas para niños y adultos en Panamá. Reserva tu cupo y mejora tu técnica con instructores certificados.">
+  <meta property="og:url" content="https://www.overswimpa.com">
+  <meta property="og:image" content="assets/logo.png">
+  <meta property="og:site_name" content="OverSwim">
+
+  <!-- Tailwind + Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Galada&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+     :root{
+      --deep:#01295F;
+      --font-primary:'Galada', cursive;
+      --font-secondary:'Montserrat', sans-serif;
+      --blue:#01406F; /* tono derivado de #01295F */
+      --aqua:#A6E1FA;
+      --sun:#FAA916;
+      --foam:rgba(255,255,255,.75);
+      --glass:rgba(255,255,255,.12);
+      --glass2:rgba(255,255,255,.18);
+      --shadow: 0 18px 50px rgba(1,41,95,.18);
+      --hero-image: url("assets/hero.jpg");
+    }
+
+    html { scroll-behavior: smooth; }
+    body{
+      font-family: var(--font-secondary);
+      color: var(--deep);
+      background:
+        radial-gradient(900px 500px at 10% 10%, rgba(166,225,250,.35), transparent 60%),
+        radial-gradient(700px 450px at 90% 15%, rgba(250,169,22,.15), transparent 60%),
+        linear-gradient(180deg, #ffffff 0%, #F6FBFF 100%);
+      overflow-x:hidden;
+    }
+
+    /* Typography */
+    h1, h2, h3, .brand-title{
+      font-family: var(--font-primary);
+      font-weight: 400 !important;
+      letter-spacing: .3px;
+    }
+    .subtitle, .font-secondary{
+      font-family: var(--font-secondary);
+    }
+
+
+    
+    /* ===== Palette enforcement (override Tailwind blues/yellows) ===== */
+    .text-blue-900{ color: var(--deep) !important; }
+    .text-blue-700{ color: var(--deep) !important; }
+    .hover\:text-blue-700:hover{ color: var(--sun) !important; }
+    .text-yellow-400{ color: var(--sun) !important; }
+    .bg-blue-900{ background: var(--deep) !important; }
+    .text-gray-900{ color: var(--deep) !important; }
+    .text-gray-800{ color: rgba(1,41,95,.92) !important; }
+    .text-gray-700{ color: rgba(1,41,95,.82) !important; }
+    .text-gray-600{ color: rgba(1,41,95,.70) !important; }
+/* Skip link */
+    .skip-link{
+      position:absolute; left:-999px; top:auto; width:1px; height:1px; overflow:hidden;
+    }
+    .skip-link:focus{
+      left:16px; top:16px; width:auto; height:auto; padding:10px 12px;
+      background:#fff; border:2px solid var(--deep); border-radius:12px; z-index:99999;
+      box-shadow: 0 12px 25px rgba(0,0,0,.12);
+    }
+
+    /* NAV glass */
+    .nav-glass{
+      background: rgba(255,255,255,.72);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(1,41,95,.08);
+    }
+
+    /* Logo */
+    .logo{ max-height: 52px; max-width: 185px; object-fit: contain; }
+
+    /* Water hero */
+    .hero{
+      position: relative;
+      min-height: 78vh;
+      display:flex; align-items:center;
+      background:
+        radial-gradient(900px 500px at 20% 10%, rgba(166,225,250,.35), transparent 60%),
+        linear-gradient(120deg, rgba(1,41,95,.80), rgba(11,79,179,.55)),
+        var(--hero-image)
+        no-repeat center/cover;
+      overflow:hidden;
+    }
+    .hero::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(800px 380px at 20% 20%, rgba(166,225,250,.35), transparent 60%),
+        radial-gradient(700px 360px at 80% 15%, rgba(250,169,22,.25), transparent 60%),
+        linear-gradient(180deg, rgba(1,41,95,.55), rgba(1,41,95,.25));
+      pointer-events:none;
+    }
+
+    /* Floating bubbles */
+    .bubble{
+      position:absolute;
+      border-radius: 999px;
+      background: rgba(255,255,255,.18);
+      box-shadow: inset 0 0 25px rgba(255,255,255,.20);
+      backdrop-filter: blur(2px);
+      animation: floatUp linear infinite;
+      pointer-events:none;
+    }
+    @keyframes floatUp{
+      0%{ transform: translateY(80px); opacity:0; }
+      10%{ opacity:.6; }
+      50%{ opacity:.35; }
+      100%{ transform: translateY(-620px); opacity:0; }
+    }
+
+    /* Wave divider se coloca 0px para que no se vea y no se mueva el div */
+    .wave{
+      width:100%;
+      overflow:hidden;
+      line-height:0;
+    }
+    .wave svg{ width: calc(0px); height: 0px; display:block; }
+    .wave .shape{ fill: rgba(166,225,250,.45); }
+    .wave.flip svg{ transform: rotate(180deg); }
+
+    /* Section background "water texture" */
+    .water-texture{
+      position: relative;
+    }
+    .water-texture::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        radial-gradient(500px 240px at 10% 20%, rgba(166,225,250,.22), transparent 60%),
+        radial-gradient(420px 200px at 90% 30%, rgba(166,225,250,.18), transparent 60%),
+        radial-gradient(520px 260px at 40% 90%, rgba(250,169,22,.10), transparent 60%);
+      pointer-events:none;
+    }
+
+    /* Glass cards */
+    .glass{
+      background: var(--glass2);
+      border: 1px solid rgba(255,255,255,.25);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: var(--shadow);
+    }
+    .card{
+      background: rgba(255,255,255,.85);
+      border: 1px solid rgba(1,41,95,.08);
+      box-shadow: 0 14px 40px rgba(1,41,95,.10);
+      border-radius: 18px;
+      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+    }
+    .card:hover{
+      transform: translateY(-6px);
+      box-shadow: 0 22px 60px rgba(1,41,95,.16);
+      border-color: rgba(11,79,179,.18);
+    }
+
+    /* Course image */
+    .img-top{
+      border-top-left-radius: 18px;
+      border-top-right-radius: 18px;
+    }
+
+    /* Pills */
+    .pill{
+      display:inline-flex; align-items:center; gap:.5rem;
+      padding: .35rem .75rem;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: .78rem;
+      background: rgba(166,225,250,.35);
+      color: var(--deep);
+      border: 1px solid rgba(11,79,179,.12);
+    }
+
+    /* Buttons */
+    .btn-primary{
+      position:relative;
+      background: linear-gradient(135deg, var(--deep), var(--sun));
+      color:#fff;
+      border-radius: 14px;
+      padding: .9rem 1.15rem;
+      font-weight: 800;
+      letter-spacing:.2px;
+      box-shadow: 0 18px 40px rgba(1,41,95,.20);
+      transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+      overflow:hidden;
+    }
+    .btn-primary:hover{ filter: brightness(1.06); }
+    .btn-primary:active{ transform: scale(.98); }
+    .btn-secondary{
+      background: rgba(255,255,255,.18);
+      color:#fff;
+      border: 1px solid rgba(255,255,255,.35);
+      border-radius: 14px;
+      padding: .9rem 1.15rem;
+      font-weight: 800;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: transform .15s ease, filter .15s ease, background .15s ease;
+    }
+    .btn-secondary:hover{ background: rgba(255,255,255,.26); }
+    .btn-secondary:active{ transform: scale(.98); }
+
+    /* Ripple effect */
+    .ripple::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(255,255,255,.35), transparent 42%);
+      opacity:0;
+      transition: opacity .3s ease;
+      pointer-events:none;
+    }
+    .ripple:active::after{ opacity:1; transition: opacity 0s; }
+
+    /* Reveal on scroll */
+    .reveal{ opacity:0; transform: translateY(14px); transition: all .7s ease; }
+    .reveal.show{ opacity:1; transform: translateY(0); }
+
+    /* Pricing highlight glow */
+    .glow{
+      position: relative;
+    }
+    .glow::before{
+      content:"";
+      position:absolute; inset:-2px;
+      border-radius: 22px;
+      background: radial-gradient(550px 200px at 50% 0%, rgba(166,225,250,.55), transparent 70%);
+      filter: blur(8px);
+      z-index:0;
+    }
+    .glow > *{ position:relative; z-index:1; }
+
+    /* WhatsApp */
+    .whatsapp-button{
+      position: fixed; bottom: 20px; right: 20px;
+      background: #25D366;
+      color:#fff;
+      width: 60px; height: 60px;
+      display:flex; align-items:center; justify-content:center;
+      border-radius:9999px;
+      box-shadow: 0 18px 45px rgba(0,0,0,.18);
+      z-index:1000;
+      transition: transform .15s ease, filter .15s ease;
+    }
+    .whatsapp-button:hover{ filter: brightness(1.05); }
+    .whatsapp-button:active{ transform: scale(.98); }
+
+    /* Cookie banner */
+    .cookie-banner{
+      position: fixed;
+      bottom: 95px;
+      left: 12px;
+      right: 12px;
+      display: none;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255,255,255,.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(1,41,95,.10);
+      box-shadow: 0 18px 50px rgba(1,41,95,.14);
+      padding: 12px 14px;
+      border-radius: 16px;
+      z-index: 9999;
+    }
+    .cookie-banner a{ color: var(--deep); text-decoration: underline; font-weight:700; }
+    .cookie-actions{ display:flex; gap:10px; flex-wrap: wrap; justify-content: flex-end; }
+
+    .btn-reject{
+      background: #eaf2ff;
+      color: var(--deep);
+      border: 1px solid rgba(11,79,179,.18);
+      padding: 8px 14px;
+      border-radius: 14px;
+      cursor: pointer;
+      font-weight:800;
+    }
+    .btn-accept{
+      background: linear-gradient(135deg, var(--deep), var(--sun));
+      color: #fff;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 14px;
+      cursor: pointer;
+      font-weight:800;
+    }
+    .btn-accept:hover{ filter: brightness(1.06); }
+
+    /* Modal */
+    .modal-overlay[hidden]{ display:none !important; }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido principal</a>
+
+  <!-- NAV -->
+  <nav class="nav-glass sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 py-3">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <button
+            id="menuBtn"
+            class="text-2xl md:hidden text-blue-900"
+            aria-label="Abrir menú"
+            aria-controls="mobileMenu"
+            aria-expanded="false"
+            type="button"
+          >
+            ☰
+          </button>
+
+          <a href="index.html" class="flex items-center" aria-label="Ir al inicio">
+            <img src="assets/logo.png" alt="Logo OverSwim" class="logo" />
+          </a>
+        </div>
+
+        <div class="hidden md:flex items-center gap-6 font-semibold">
+          <a href="#sobre-nosotros" class="text-gray-700 hover:text-blue-700 transition">Sobre Nosotros</a>
+          <a href="#cursos" class="text-gray-700 hover:text-blue-700 transition">Cursos</a>
+          <a href="#por-que" class="text-gray-700 hover:text-blue-700 transition">¿Por qué?</a>
+          <a href="#paquetes" class="text-gray-700 hover:text-blue-700 transition">Paquetes</a>
+          <button type="button" class="btn-primary ripple" onclick="openCalendlyFromCTA()">Reservar</button>
+        </div>
+      </div>
+
+      <!-- Mobile menu -->
+      <div id="mobileMenu" class="md:hidden mt-3 hidden">
+        <div class="card p-4 flex flex-col items-center gap-3">
+          <a href="#sobre-nosotros" class="text-gray-700 hover:text-blue-700 transition w-full text-center" data-close-mobile>Sobre Nosotros</a>
+          <a href="#cursos" class="text-gray-700 hover:text-blue-700 transition w-full text-center" data-close-mobile>Cursos</a>
+          <a href="#por-que" class="text-gray-700 hover:text-blue-700 transition w-full text-center" data-close-mobile>¿Por qué?</a>
+          <a href="#paquetes" class="text-gray-700 hover:text-blue-700 transition w-full text-center" data-close-mobile>Paquetes</a>
+          <button type="button" class="btn-primary ripple w-full" onclick="openCalendlyFromCTA()">Reservar</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main id="contenido">
+    <!-- HERO -->
+    <header class="hero text-white">
+      <!-- bubbles -->
+      <div class="bubble" style="left:8%;  bottom:-80px; width:22px; height:22px; animation-duration: 10s;"></div>
+      <div class="bubble" style="left:18%; bottom:-80px; width:14px; height:14px; animation-duration: 12s; animation-delay:1s;"></div>
+      <div class="bubble" style="left:36%; bottom:-80px; width:18px; height:18px; animation-duration: 11s; animation-delay:2s;"></div>
+      <div class="bubble" style="left:62%; bottom:-80px; width:26px; height:26px; animation-duration: 13s; animation-delay:1.2s;"></div>
+      <div class="bubble" style="left:78%; bottom:-80px; width:16px; height:16px; animation-duration: 9s;  animation-delay:2.4s;"></div>
+      <div class="bubble" style="left:90%; bottom:-80px; width:20px; height:20px; animation-duration: 14s; animation-delay:.7s;"></div>
+
+      <div class="max-w-6xl mx-auto px-4 py-24 md:py-28 relative" style="z-index:1;">
+        <div class="max-w-3xl">
+          <div class="flex flex-wrap gap-2 mb-4 reveal">
+            <span class="pill">🏡 A domicilio</span>
+            <span class="pill">🛟 Seguridad primero</span>
+            <span class="pill">⭐ Método progresivo</span>
+          </div>
+
+          <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-5 reveal">
+            Aprende a nadar hoy,<br class="hidden md:block">
+            Sin miedo, con OverSwim
+          </h1>
+
+          <p class="text-lg md:text-xl text-white opacity-95 mb-8 reveal">
+            Clases personalizadas para bebés, niños, adolescentes y adultos.
+            Tú pones la piscina… nosotros ponemos la magia (y la técnica).
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-3 reveal">
+            <button class="btn-primary ripple" type="button" onclick="openCalendlyFromCTA()">Reservar ahora</button>
+            <a class="btn-secondary text-center" href="#paquetes">Ver paquetes</a>
+          </div>
+
+          <div class="mt-8 glass rounded-2xl p-4 md:p-5 inline-block reveal">
+            <div class="flex flex-wrap gap-4 text-sm md:text-base">
+              <div class="flex items-center gap-2">
+                <i class="fas fa-stopwatch"></i><span><b>40 min</b> por clase</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <i class="fas fa-water"></i><span>Progreso <b>medible</b></span>
+              </div>
+              <div class="flex items-center gap-2">
+                <i class="fas fa-shield-heart"></i><span>Enfoque <b>seguro</b></span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="wave flip">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <path class="shape" d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28
+          70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,56.2,583,72.05
+          c69.27,15.6,139.25,12.32,209-4.09,36.15-8.54,69.35-22.31,104.5-29.85
+          C989.49,25,1113,27.29,1200,36.51V0Z"></path>
+        </svg>
+      </div>
+    </header>
+
+    <!-- SOBRE NOSOTROS -->
+    <section id="sobre-nosotros" class="water-texture py-14 px-4">
+      <div class="max-w-5xl mx-auto relative">
+        <div class="text-center mb-10 reveal">
+          <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900">Sobre OverSwim</h2>
+          <p class="text-gray-700 mt-3">
+            No vendemos clases; vendemos tranquilidad, confianza y técnica… con olor a cloro y victoria.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="card p-6 md:p-7 reveal">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style="background:rgba(166,225,250,.45);">
+                <i class="fas fa-compass text-blue-900"></i>
+              </div>
+              <h3 class="text-xl font-extrabold text-blue-900">Nuestra misión</h3>
+            </div>
+            <p class="text-gray-700 leading-relaxed text-justify">
+              Transformar vidas a través de la natación: clases personalizadas y grupales que enseñan a nadar,
+              fortalecen la confianza y elevan el bienestar. En cada sesión, guiamos a niños y adultos con un
+              método seguro, motivador y medible.
+            </p>
+          </div>
+
+          <div class="card p-6 md:p-7 reveal">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style="background:rgba(250,169,22,.20);">
+                <i class="fas fa-people-group text-blue-900"></i>
+              </div>
+              <h3 class="text-xl font-extrabold text-blue-900">Nuestro equipo</h3>
+            </div>
+            <p class="text-gray-700 leading-relaxed">
+              Instructores con vocación y paciencia: aprendemos contigo, celebramos tus avances y cuidamos cada detalle del proceso.
+            </p>
+
+            <ul class="mt-4 space-y-2 text-gray-700 font-semibold">
+              <li class="flex items-center gap-2"><i class="fas fa-check-circle text-green-600"></i> Empatía y seguridad</li>
+              <li class="flex items-center gap-2"><i class="fas fa-check-circle text-green-600"></i> Progresión por niveles</li>
+              <li class="flex items-center gap-2"><i class="fas fa-check-circle text-green-600"></i> Técnica + confianza</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="wave">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <path class="shape" d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28
+          70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,56.2,583,72.05
+          c69.27,15.6,139.25,12.32,209-4.09,36.15-8.54,69.35-22.31,104.5-29.85
+          C989.49,25,1113,27.29,1200,36.51V0Z"></path>
+        </svg>
+      </div>
+    </section>
+
+    <!-- CURSOS -->
+    <section id="cursos" class="py-16 bg-white">
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="text-center mb-12 reveal">
+          <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900">Nuestros Cursos</h2>
+          <p class="text-gray-700 mt-3">Cada nivel tiene su ola. Nosotros te enseñamos a surfearla.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+          <!-- Bebés -->
+          <article class="card overflow-hidden reveal">
+            <img loading="lazy" decoding="async"
+              src="assets/bebe.png"
+              alt="Natación para bebés" class="w-full h-48 object-cover img-top">
+            <div class="p-6">
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <span class="pill">👶 4 meses a 3 Años</span>
+              </div>
+              <h3 class="text-lg font-extrabold text-blue-900 mb-2">Natación para Bebés</h3>
+              <p class="text-gray-700 mb-4">
+                Adaptación al agua con juegos, música y ejercicios suaves. Acompañamiento del adulto.
+              </p>
+              <button type="button" onclick="openCalendlyFromCTA()"
+                class="btn-primary ripple w-full text-center">
+                Saber más <i class="fas fa-arrow-right ml-2"></i>
+              </button>
+            </div>
+          </article>
+
+          <!-- Niños y adolescentes -->
+          <article class="card overflow-hidden reveal">
+            <img loading="lazy" decoding="async"
+              src="assets/niños.jpeg"
+              alt="Natación para niños y adolescentes" class="w-full h-48 object-cover img-top">
+            <div class="p-6">
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <span class="pill">🧒 4–17</span>
+                <span class="pill">📈 Por niveles</span>
+              </div>
+              <h3 class="text-lg font-extrabold text-blue-900 mb-2">Niños y Adolescentes</h3>
+              <p class="text-gray-700 mb-4">
+                Confianza, flotación, respiración y estilos. Personalizado según ritmo y objetivo.
+              </p>
+              <p></p>
+              <button type="button" onclick="openCalendlyFromCTA()"
+                class="btn-primary ripple w-full text-center">
+                Saber más <i class="fas fa-arrow-right ml-2"></i>
+              </button>
+            </div>
+          </article>
+
+          <!-- Adultos -->
+          <article class="card overflow-hidden reveal">
+            <img loading="lazy" decoding="async"
+              src="assets/adultos.jpeg"
+              alt="Natación para adultos" class="w-full h-48 object-cover img-top">
+            <div class="p-6">
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <span class="pill">🧑 18+</span>
+                <span class="pill">🛟 Sin miedo</span>
+              </div>
+              <h3 class="text-lg font-extrabold text-blue-900 mb-2">Natación para Adultos</h3>
+              <p class="text-gray-700 mb-4">
+                Aprende desde cero o mejora tu técnica: objetivo fitness, salud o confianza.
+              </p>
+              <button type="button" onclick="openCalendlyFromCTA()"
+                class="btn-primary ripple w-full text-center">
+                Saber más <i class="fas fa-arrow-right ml-2"></i>
+              </button>
+            </div>
+          </article>
+
+
+          <!-- clases grupales para niños y adultos -->
+          <article class="card overflow-hidden reveal md:col-span-2 lg:col-span-1">
+            <img loading="lazy" decoding="async"
+              src="assets/grupo.jpeg"
+              alt="Clases grupales" class="w-full h-48 object-cover img-top">
+            <div class="p-6">
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <span class="pill">👦👧 Grupos</span>
+              
+              </div>
+              <h3 class="text-lg font-extrabold text-blue-900 mb-2">Clases Grupales</h3>
+              <p class="text-gray-700 mb-4">
+                Para familias, vecinos o amigos. Adaptadas por niveles con enfoque seguro y divertido.
+              </p>
+              <button type="button" onclick="openCalendlyFromCTA()"
+                class="btn-primary ripple w-full text-center">
+                Saber más <i class="fas fa-arrow-right ml-2"></i>
+              </button>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- POR QUÉ -->
+    <section id="por-que" class="water-texture py-16">
+      <div class="max-w-6xl mx-auto px-4 relative">
+        <div class="text-center mb-12 reveal">
+          <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900">¿Por qué elegir OverSwim?</h2>
+          <p class="text-gray-700 mt-3">No es “solo nadar”. Es aprender a flotar en la vida, con técnica.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="card p-8 text-center reveal">
+            <div class="mx-auto w-14 h-14 rounded-2xl flex items-center justify-center mb-4" style="background:rgba(166,225,250,.45);">
+              <i class="fas fa-fingerprint text-2xl text-blue-900"></i>
+            </div>
+            <h3 class="text-lg font-extrabold mb-2 text-gray-900">Personalizadas</h3>
+            <p class="text-gray-700">Nivel, edad y objetivo: el plan se adapta a ti.</p>
+          </div>
+
+          <div class="card p-8 text-center reveal">
+            <div class="mx-auto w-14 h-14 rounded-2xl flex items-center justify-center mb-4" style="background:rgba(250,169,22,.18);">
+              <i class="fas fa-house-chimney-user text-2xl text-blue-900"></i>
+            </div>
+            <h3 class="text-lg font-extrabold mb-2 text-gray-900">A domicilio</h3>
+            <p class="text-gray-700">Comodidad total: tú pones la piscina, nosotros el proceso.</p>
+          </div>
+
+          <div class="card p-8 text-center reveal">
+            <div class="mx-auto w-14 h-14 rounded-2xl flex items-center justify-center mb-4" style="background:rgba(166,225,250,.35);">
+              <i class="fas fa-shield-heart text-2xl text-blue-900"></i>
+            </div>
+            <h3 class="text-lg font-extrabold mb-2 text-gray-900">Seguridad</h3>
+            <p class="text-gray-700">Progresión segura: confianza primero, técnica después, velocidad al final.</p>
+          </div>
+
+          <div class="card p-8 text-center reveal">
+            <div class="mx-auto w-14 h-14 rounded-2xl flex items-center justify-center mb-4" style="background:rgba(250,169,22,.14);">
+              <i class="fas fa-medal text-2xl text-blue-900"></i>
+            </div>
+            <h3 class="text-lg font-extrabold mb-2 text-gray-900">Equipo capacitado</h3>
+            <p class="text-gray-700">Instructores con paciencia, vocación y método.</p>
+          </div>
+
+          <div class="card p-8 text-center reveal">
+            <div class="mx-auto w-14 h-14 rounded-2xl flex items-center justify-center mb-4" style="background:rgba(166,225,250,.38);">
+              <i class="fas fa-certificate text-2xl text-blue-900"></i>
+            </div>
+            <h3 class="text-lg font-extrabold mb-2 text-gray-900">Certificados</h3>
+            <p class="text-gray-700">Reconocemos tu progreso y tus logros.</p>
+          </div>
+
+          <div class="card p-8 text-center reveal">
+            <div class="mx-auto w-14 h-14 rounded-2xl flex items-center justify-center mb-4" style="background:rgba(250,169,22,.12);">
+              <i class="fas fa-calendar-check text-2xl text-blue-900"></i>
+            </div>
+            <h3 class="text-lg font-extrabold mb-2 text-gray-900">Flexibles</h3>
+            <p class="text-gray-700">Agendamos según tu ritmo de vida.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAQUETES -->
+    <section id="paquetes" class="py-16 bg-white">
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="text-center mb-12 reveal">
+          <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900">Paquetes</h2>
+          <p class="text-gray-700 mt-3">Elige tu ola: suave, constante o turbo.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Básico -->
+          <div class="card p-8 reveal">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-xl font-extrabold text-blue-900">Básico</h3>
+              <span class="pill">Ideal: empezar</span>
+            </div>
+            <div class="text-5xl font-extrabold text-blue-900">$130</div>
+            <p class="text-gray-700 mt-2 font-semibold">4 clases / mes</p>
+
+            <ul class="mt-6 space-y-3 text-gray-700 font-semibold">
+              <li class="flex items-center gap-2"><i class="fas fa-check-circle text-green-600"></i> 40 minutos por clase</li>
+              <li class="flex items-center gap-2"><i class="fas fa-check-circle text-green-600"></i> Evaluación inicial</li>
+              <li class="flex items-center gap-2"><i class="fas fa-check-circle text-green-600"></i> A domicilio</li>
+            </ul>
+
+            <button type="button" class="btn-primary ripple w-full mt-8"
+              onclick="openCalendlyWithPackage('Paquete Básico', 130)">Seleccionar</button>
+          </div>
+
+          <!-- Estándar Popular -->
+          <div class="card p-8 reveal glow">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="text-xl font-extrabold text-blue-900">Estándar</h3>
+              <span class="pill">🔥 Popular</span>
+            </div>
+            <div class="text-5xl font-extrabold text-blue-900">$220</div>
+            <p class="text-gray-700 mt-2 font-semibold">8 clases / mes</p>
+
+            <ul class="mt-6 space-y-3 text-gray-700 font-semibold">
+              <li class="flex items-center gap-2"><i class="fas fa-check-circle text-green-600"></i> 40 minutos por clase</li>
+              <li class="flex items-center gap-2"><i class="fas fa-check-circle text-green-600"></i> Evaluación mensual</li>
+              <li class="flex items-center gap-2"><i class="fas fa-check-circle text-green-600"></i> A domicilio</li>
+              <li class="flex items-center gap-2"><i class="fas fa-check-circle text-green-600"></i> Certificado de participación</li>
+            </ul>
+
+            <button type="button" class="btn-primary ripple w-full mt-8"
+              onclick="openCalendlyWithPackage('Paquete Estándar', 220)">Seleccionar</button>
+          </div>
+
+          <!-- Premium -->
+          <div class="card p-8 reveal">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-xl font-extrabold text-blue-900">Premium</h3>
+              <span class="pill">⚡ Avance rápido</span>
+            </div>
+            <div class="text-5xl font-extrabold text-blue-900">$320</div>
+            <p class="text-gray-700 mt-2 font-semibold">12 clases / mes</p>
+
+            <ul class="mt-6 space-y-3 text-gray-700 font-semibold">
+              <li class="flex items-center gap-2"><i class="fas fa-check-circle text-green-600"></i> 40 minutos por clase</li>
+              <li class="flex items-center gap-2"><i class="fas fa-check-circle text-green-600"></i> Evaluación semanal</li>
+              <li class="flex items-center gap-2"><i class="fas fa-check-circle text-green-600"></i> A domicilio</li>
+              <li class="flex items-center gap-2"><i class="fas fa-check-circle text-green-600"></i> Certificado de progreso</li>
+              <li class="flex items-center gap-2"><i class="fas fa-check-circle text-green-600"></i> Gorro o flotador de obsequio</li>
+            </ul>
+
+            <button type="button" class="btn-primary ripple w-full mt-8"
+              onclick="openCalendlyWithPackage('Paquete Premium', 320)">Seleccionar</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INSTAGRAM -->
+    <section class="py-16 water-texture">
+      <div class="max-w-6xl mx-auto px-4 text-center relative">
+        <div class="reveal">
+          <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-3">Síguenos en Instagram</h2>
+          <p class="text-gray-700 mb-8">Más agua, más progreso, más historias.</p>
+        </div>
+
+        <div class="mx-auto max-w-screen-md card overflow-hidden reveal">
+          <iframe
+            title="Instagram OverSwim"
+            src="https://www.instagram.com/over_swim/embed"
+            width="100%"
+            height="600"
+            frameborder="0"
+            scrolling="no"
+            loading="lazy"
+            allow="encrypted-media"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIOS -->
+    <section class="py-16 bg-white">
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="text-center mb-12 reveal">
+          <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900">Testimonios</h2>
+          <p class="text-gray-700 mt-3">Cuando la gente flota, también flota la reputación 😄</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="card p-6 reveal">
+            <div class="flex items-center mb-4">
+              <div class="text-yellow-400 mr-2">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+              </div>
+              <div class="text-gray-600 font-bold">5.0</div>
+            </div>
+            <p class="text-gray-700 mb-6">"Mi hijo tenía miedo al agua, pero ahora disfruta sus clases. Instructores excelentes."</p>
+            <div class="flex items-center">
+              <img loading="lazy" decoding="async"
+               src="https://media.istockphoto.com/id/1603499705/es/foto/playa-puesta-de-sol-y-amor-de-mamá-por-niño-niño-o-hijo-juntos-al-aire-libre-en-la-naturaleza.jpg?s=612x612&w=0&k=20&c=T3oV2_hTfaOhXCCNfA22WvWOTRF9ESdHHiY2YaYq_lU="
+                alt="Foto de Ana Martínez" class="w-10 h-10 rounded-full mr-3 object-cover">
+              <div>
+                <p class="font-extrabold text-gray-900">Ana Martínez</p>
+                <p class="text-gray-600 text-sm font-semibold">Madre de Mateo</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card p-6 reveal">
+            <div class="flex items-center mb-4">
+              <div class="text-yellow-400 mr-2">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+              </div>
+              <div class="text-gray-600 font-bold">5.0</div>
+            </div>
+            <p class="text-gray-700 mb-6">"A los 40 años decidí aprender a nadar y lo logré. Clases personalizadas y buen ambiente."</p>
+            <div class="flex items-center">
+              <img loading="lazy" decoding="async"
+                src="https://media.istockphoto.com/id/1952691914/es/foto/kayak-en-creta-grecia.jpg?s=612x612&w=0&k=20&c=1gb_RG5rqcLzynQRbmH7AObhrXPXQafsDf2DUQ8Exfg="
+                alt="Foto de Carlos Mendoza" class="w-10 h-10 rounded-full mr-3 object-cover">
+              <div>
+                <p class="font-extrabold text-gray-900">Carlos Mendoza</p>
+                <p class="text-gray-600 text-sm font-semibold">Estudiante adulto</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card p-6 reveal">
+            <div class="flex items-center mb-4">
+              <div class="text-yellow-400 mr-2">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+              </div>
+              <div class="text-gray-600 font-bold">4.5</div>
+            </div>
+            <p class="text-gray-700 mb-6">"Mis gemelas mejoraron su técnica y resistencia. Profesores pacientes y profesionales."</p>
+            <div class="flex items-center">
+              <img loading="lazy" decoding="async"
+                  src="https://media.istockphoto.com/id/1450268558/es/foto/verano-selfie.jpg?s=612x612&w=0&k=20&c=pswbLAyGviKPySMGtYA1iR0jq1CbLHMxCTDgaWcaMXA="
+                alt="Foto de Laura Sánchez" class="w-10 h-10 rounded-full mr-3 object-cover">
+              <div>
+                <p class="font-extrabold text-gray-900">Laura Sánchez</p>
+                <p class="text-gray-600 text-sm font-semibold">Madre de Eva y Lucía</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-12 reveal">
+          <button class="btn-primary ripple" type="button" onclick="openCalendlyFromCTA()">
+            Reservar mi clase <i class="fas fa-water ml-2"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="py-14" style="background:linear-gradient(135deg, var(--deep), var(--sun)); color:white;">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <h3 class="text-xl font-extrabold mb-4">OverSwim</h3>
+          <p class="opacity-95">
+            Clases de natación para todas las edades. Aprende con un equipo profesional en un ambiente seguro y motivador.
+          </p>
+          <div class="flex space-x-4 mt-5 text-lg">
+            <a href="#" class="opacity-90 hover:opacity-100" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="opacity-90 hover:opacity-100" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="opacity-90 hover:opacity-100" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="opacity-90 hover:opacity-100" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-extrabold mb-4">Enlaces</h3>
+          <ul class="space-y-2 font-semibold opacity-95">
+            <li><a href="#sobre-nosotros" class="hover:underline">Sobre Nosotros</a></li>
+            <li><a href="#cursos" class="hover:underline">Cursos</a></li>
+            <li><a href="#por-que" class="hover:underline">¿Por qué?</a></li>
+            <li><a href="#paquetes" class="hover:underline">Paquetes</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-extrabold mb-4">Horarios</h3>
+          <ul class="space-y-2 font-semibold opacity-95">
+            <li>Lunes - Viernes: 8AM - 8PM</li>
+            <li>Sábados: 9AM - 6PM</li>
+            <li>Domingos: 9AM - 2PM</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-extrabold mb-4">Contacto</h3>
+          <ul class="space-y-2 font-semibold opacity-95">
+            <li class="flex items-start gap-3"><i class="fas fa-map-marker-alt mt-1"></i><span>El Cangrejo, Av. Manuel Espinosa Batista</span></li>
+            <li class="flex items-start gap-3"><i class="fas fa-phone mt-1"></i><span>+507 6990-7293</span></li>
+            <li class="flex items-start gap-3"><i class="fas fa-envelope mt-1"></i><span>info@overswimpa.com</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-white border-opacity-20 mt-10 pt-8 text-center opacity-95 font-semibold">
+        <p>&copy; <span id="yearNow"></span> OverSwim. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp -->
+  <a href="https://wa.me/50769907293" target="_blank" rel="noopener noreferrer"
+     class="whatsapp-button" aria-label="Habla con nosotros por WhatsApp">
+    <i class="fab fa-whatsapp text-2xl"></i>
+  </a>
+
+  <!-- CALENDLY MODAL -->
+  <section id="calendlyModal" class="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50" hidden>
+    <div class="card max-w-3xl w-full mx-4 p-4 relative" style="height: 720px; max-height: 92vh;">
+      <button type="button" onclick="closeCalendly()"
+        class="absolute top-3 right-4 text-4xl leading-none text-gray-700 hover:text-black"
+        aria-label="Cerrar ventana">
+        &times;
+      </button>
+
+      <div class="px-2 pb-2">
+        <p class="text-sm text-gray-700 font-semibold">
+          <span class="font-extrabold">Seleccionaste:</span>
+          <span id="selectedPackageLabel">Reserva general</span>
+        </p>
+      </div>
+
+      <div class="calendly-inline-widget" id="calendlyWidget"
+        data-url="https://calendly.com/overswimpa/30min?primary_color=01295f"
+        style="min-width:320px; height:100%;">
+      </div>
+    </div>
+  </section>
+
+  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+  <!-- Cookies -->
+  <div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Preferencias de cookies">
+    <p class="text-sm text-gray-700 mr-2 font-semibold">
+      🍪 Usamos cookies para mejorar tu experiencia.
+      Consulta nuestra <a href="politica-cookies.html" target="_blank" rel="noopener noreferrer">Política de Cookies</a>.
+    </p>
+    <div class="cookie-actions">
+      <button class="btn-reject" type="button" onclick="rejectCookies()">Rechazar</button>
+      <button class="btn-accept" type="button" onclick="acceptCookies()">Aceptar</button>
+    </div>
+  </div>
+
+  <script>
+    // ===== State =====
+    const state = { selectedPackage: null, selectedPrice: null };
+    const encode = (str) => encodeURIComponent(String(str ?? ''));
+
+    // ===== Ripple tracking (mouse position for radial) =====
+    document.addEventListener('pointerdown', (e) => {
+      const t = e.target.closest('.ripple');
+      if (!t) return;
+      const r = t.getBoundingClientRect();
+      t.style.setProperty('--x', ((e.clientX - r.left) / r.width) * 100 + '%');
+      t.style.setProperty('--y', ((e.clientY - r.top) / r.height) * 100 + '%');
+    });
+
+    // ===== Navbar mobile =====
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    function toggleMobileMenu(force) {
+      const willOpen = typeof force === 'boolean' ? force : mobileMenu.classList.contains('hidden');
+      mobileMenu.classList.toggle('hidden', !willOpen);
+      menuBtn.setAttribute('aria-expanded', String(willOpen));
+    }
+    if (menuBtn) menuBtn.addEventListener('click', () => toggleMobileMenu());
+    document.querySelectorAll('[data-close-mobile]').forEach(a => {
+      a.addEventListener('click', () => toggleMobileMenu(false));
+    });
+
+    // ===== Reveal on scroll =====
+    const els = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('show'); });
+    }, { threshold: 0.12 });
+    els.forEach(el => io.observe(el));
+
+    // ===== Calendly modal =====
+    const calendlyModal = document.getElementById('calendlyModal');
+    const calendlyWidget = document.getElementById('calendlyWidget');
+    const selectedPackageLabel = document.getElementById('selectedPackageLabel');
+
+    function openCalendly(urlOverride) {
+      if (urlOverride) calendlyWidget.setAttribute('data-url', urlOverride);
+
+      calendlyWidget.innerHTML = '';
+      calendlyWidget.classList.add('calendly-inline-widget');
+
+      calendlyModal.hidden = false;
+
+      if (window.Calendly && window.Calendly.initInlineWidget) {
+        window.Calendly.initInlineWidget({
+          url: calendlyWidget.getAttribute('data-url'),
+          parentElement: calendlyWidget
+        });
+      }
+    }
+    function closeCalendly(){ calendlyModal.hidden = true; }
+
+    function openCalendlyFromCTA() {
+      state.selectedPackage = null;
+      state.selectedPrice = null;
+      selectedPackageLabel.textContent = 'Reserva general';
+      openCalendly("https://calendly.com/overswimpa/30min?primary_color=01295f");
+    }
+
+    function openCalendlyWithPackage(packageName, price) {
+      state.selectedPackage = packageName;
+      state.selectedPrice = price;
+      selectedPackageLabel.textContent = `${packageName} — $${price}`;
+
+      const url =
+        "https://calendly.com/overswimpa/30min" +
+        "?primary_color=01295f" +
+        "&utm_source=website" +
+        "&utm_medium=button" +
+        "&utm_campaign=packages" +
+        "&utm_content=" + encode(packageName) +
+        "&utm_term=" + encode(price);
+
+      openCalendly(url);
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !calendlyModal.hidden) closeCalendly();
+    });
+    calendlyModal.addEventListener('click', (e) => {
+      if (e.target === calendlyModal) closeCalendly();
+    });
+
+    // ===== Footer year =====
+    document.getElementById('yearNow').textContent = new Date().getFullYear();
+
+    // ===== Cookie consent + Tracking =====
+    function showCookieBanner(){ document.getElementById('cookie-banner').style.display = 'flex'; }
+    function hideCookieBanner(){ document.getElementById('cookie-banner').style.display = 'none'; }
+
+    function acceptCookies() {
+      localStorage.setItem('cookiesChoice', 'accepted');
+      hideCookieBanner();
+      enableTracking();
+    }
+
+    function rejectCookies() {
+      localStorage.setItem('cookiesChoice', 'rejected');
+      hideCookieBanner();
+      console.log("Cookies rechazadas → No se carga seguimiento");
+    }
+
+    function enableTracking() {
+      if (window.__trackingEnabled) return;
+      window.__trackingEnabled = true;
+
+      const s = document.createElement('script');
+      s.async = true;
+      s.src = "https://www.googletagmanager.com/gtag/js?id=G-S0KW8PN59G";
+      document.head.appendChild(s);
+
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      window.gtag = gtag;
+
+      gtag('js', new Date());
+      gtag('config', 'G-S0KW8PN59G');     // Google Analytics
+      gtag('config', 'AW-17417406770');   // Google Ads
+    }
+
+    (function initCookies() {
+      const choice = localStorage.getItem('cookiesChoice');
+      if (!choice) showCookieBanner();
+      if (choice === 'accepted') enableTracking();
+    })();
+  </script>
+</body>
+</html>
